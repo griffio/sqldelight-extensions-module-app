@@ -29,7 +29,8 @@ sqldelight {
 
 Support for some existing modules loaded in a single module. 
 
-This is because SqlDelight can currently only support a single module.
+This is because SqlDelight can currently only support a single module 
+[ExtensionsModule.kt](https://github.com/griffio/sqldelight-extensions-module-app/blob/master/extensions-module/src/main/kotlin/griffio/ExtensionsModule.kt)
 
 The modules have to be manually linked for all the overridden rules and
 manually set up the inheritance chain of TypeResolvers.
