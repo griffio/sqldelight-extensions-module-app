@@ -8,6 +8,8 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
 CREATE EXTENSION IF NOT EXISTS vchord_bm25;
 
+CREATE EXTENSION IF NOT EXISTS postgis;
+
 CREATE TABLE locations (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
@@ -36,3 +38,23 @@ CREATE TABLE Documents (
 );
 
 CREATE INDEX documents_embedding_bm25 ON Documents USING bm25 (embedding bm25_ops);
+
+CREATE TABLE Locations (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  point GEOMETRY(Point, 4326) AS Point,
+  pointM GEOMETRY(PointM, 4326) AS Point,
+  pointZ GEOMETRY(PointZ, 4326) AS Point,
+  pointZM GEOMETRY(PointZM, 4326) AS Point
+);
+
+CREATE INDEX idx_locations_point ON Locations USING GIST(point);
+CREATE INDEX idx_locations_pointm ON Locations USING GIST(pointM);
+CREATE INDEX idx_locations_pointz ON Locations USING GIST(pointZ);
+CREATE INDEX idx_locations_pointzm ON Locations USING GIST(pointZM);
+
+CREATE TABLE GlobalPoints (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(64) NOT NULL,
+    location GEOGRAPHY(Point, 4326) AS Point NOT NULL
+);
