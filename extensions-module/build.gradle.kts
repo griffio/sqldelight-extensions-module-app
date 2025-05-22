@@ -48,7 +48,7 @@ publishing {
             version = project.version.toString()
 
             pom {
-                name.set("SQLDelight Bm25 Module")
+                name.set("SQLDelight Extensions Module")
                 description.set("SQLDelight module for extensions support")
                 url.set("https://github.com/griffio/sqldelight-extensions-module-app")
 
