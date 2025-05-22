@@ -27,23 +27,27 @@ class ExtensionsModule : SqlDelightModule {
         // For example - Postgis, PgVector and Bm25 all add new data types - a new combined rule must be added to the dialect parser
         // All the rules that are shared must call all overridden parser rules
         PostgreSqlParserUtil.type_name = GeneratedParserUtilBase.Parser { psiBuilder, i ->
-            type_name?.parse(psiBuilder, i) ?: PostgisParser.type_name_real(psiBuilder, i)
+            type_name?.parse(psiBuilder, i)
+                    ?: PostgisParser.type_name_real(psiBuilder, i)
                     || PgvectorParser.type_name_real(psiBuilder, i)
                     || Bm25Parser.type_name_real(psiBuilder, i)
                     || PostgreSqlParser.type_name_real(psiBuilder, i)
         }
         PostgreSqlParserUtil.extension_expr = Parser { psiBuilder, i ->
-            extension_expr?.parse(psiBuilder, i) ?: Bm25Parser.extension_expr_real(psiBuilder, i)
+            extension_expr?.parse(psiBuilder, i)
+                    ?: Bm25Parser.extension_expr_real(psiBuilder, i)
                     || PgvectorParser.extension_expr_real(psiBuilder, i)
                     || PostgreSqlParser.extension_expr_real(psiBuilder, i)
         }
         PostgreSqlParserUtil.index_method = Parser { psiBuilder, i ->
-            index_method?.parse(psiBuilder, i) ?: Bm25Parser.index_method_real(psiBuilder, i)
+            index_method?.parse(psiBuilder, i)
+                    ?: Bm25Parser.index_method_real(psiBuilder, i)
                     || PgvectorParser.index_method_real(psiBuilder, i)
                     || PostgreSqlParser.index_method_real(psiBuilder, i)
         }
         PostgreSqlParserUtil.storage_parameters = Parser { psiBuilder, i ->
-            storage_parameters?.parse(psiBuilder, i) ?: Bm25Parser.storage_parameters_real(psiBuilder, i)
+            storage_parameters?.parse(psiBuilder, i)
+                    ?: Bm25Parser.storage_parameters_real(psiBuilder, i)
                     || PgvectorParser.storage_parameters_real(psiBuilder, i)
                     || PostgreSqlParser.storage_parameters_real(psiBuilder, i)
         }
