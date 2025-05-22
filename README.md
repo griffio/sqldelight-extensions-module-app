@@ -6,6 +6,25 @@ https://github.com/cashapp/sqldelight
 
 Use with SqlDelight `2.1.0`
 
+Maven Central https://central.sonatype.com/artifact/io.github.griffio/sqldelight-extensions/versions
+
+e.g.
+
+```
+sqldelight {
+    databases {
+        create("Sample") {
+            deriveSchemaFromMigrations.set(true)
+            migrationOutputDirectory = migrationsDir
+            migrationOutputFileFormat = ".sql"
+            packageName.set("griffio.queries")
+            dialect(libs.sqldelight.postgresql.dialect)
+            module(project("io.github.griffio:sqldelight-extensions:0.0.1"))
+        }
+    }
+}
+```
+
 ---
 
 Support for some existing modules loaded in a single module. 
