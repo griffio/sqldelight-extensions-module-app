@@ -40,5 +40,7 @@ Module Bundle
 * PostGis
 * Bm25
 * PgVector
+* PgCrypto
+* Bits and Bytes
 
 More can be added if useful
