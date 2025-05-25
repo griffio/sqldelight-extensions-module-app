@@ -19,7 +19,7 @@ sqldelight {
             migrationOutputFileFormat = ".sql"
             packageName.set("griffio.queries")
             dialect(libs.sqldelight.postgresql.dialect)
-            module(project("io.github.griffio:sqldelight-extensions:0.0.1"))
+            module(project("io.github.griffio:sqldelight-extensions:0.0.2"))
         }
     }
 }
