@@ -6,3 +6,6 @@ SELECT pgp_sym_encrypt('bob@example.com', 'some password', 'compress-algo=1, cip
 
 selectSalted:
 SELECT gen_salt('bf', 31);
+
+generateSaltedPasswordHash:
+SELECT crypt(:password::TEXT, gen_salt('md5')) AS passwordHash;
