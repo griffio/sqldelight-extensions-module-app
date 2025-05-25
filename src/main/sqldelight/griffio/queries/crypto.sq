@@ -1,0 +1,8 @@
+selectSha512:
+SELECT sha512('secret');
+
+selectPgpSymEncrypted:
+SELECT pgp_sym_encrypt('bob@example.com', 'some password', 'compress-algo=1, cipher-algo=aes256');
+
+selectSalted:
+SELECT gen_salt('bf', 31);
