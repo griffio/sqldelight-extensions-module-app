@@ -79,6 +79,6 @@ open class PostGisTypeResolver(private val parentResolver: TypeResolver) : PgVec
             "st_x" -> IntermediateType(PrimitiveType.REAL).nullableIf(resolvedType(functionExpr.exprList[0]).javaType.isNullable)
             "st_y" -> IntermediateType(PrimitiveType.REAL).nullableIf(resolvedType(functionExpr.exprList[0]).javaType.isNullable)
             "st_z" -> IntermediateType(PrimitiveType.REAL).nullableIf(resolvedType(functionExpr.exprList[0]).javaType.isNullable)
-            else -> parentResolver.functionType(functionExpr)
+            else -> super.functionType(functionExpr)
         }
 }

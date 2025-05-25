@@ -75,7 +75,7 @@ enum class Bm25VectorSqlType(override val javaType: TypeName) : DialectType {
 }
 
 // Change to inheritance so that definitionType can be called by polymorphism - not possible with delegation
-class Bm25TypeResolver(private val parentResolver: TypeResolver) : PostGisTypeResolver(parentResolver) {
+open class Bm25TypeResolver(private val parentResolver: TypeResolver) : PostGisTypeResolver(parentResolver) {
 
     override fun definitionType(typeName: SqlTypeName): IntermediateType {
         return when (typeName) {

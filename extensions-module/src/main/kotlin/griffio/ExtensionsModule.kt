@@ -17,13 +17,16 @@ import griffio.grammar.PostgisParserUtil.type_name
 
 class ExtensionsModule : SqlDelightModule {
     // all typeResolvers must be combined to resolve types for all modules - parentResolver is passed when this module is loaded and provides ansi types
-    override fun typeResolver(parentResolver: TypeResolver): TypeResolver = Bm25TypeResolver(PostGisTypeResolver(PgVectorTypeResolver(parentResolver)))
+    override fun typeResolver(parentResolver: TypeResolver): TypeResolver =
+        BinaryStringsResolver(PgCryptoResolver(Bm25TypeResolver(PostGisTypeResolver(PgVectorTypeResolver(parentResolver)))))
 
     override fun setup() {
         // for each module the rules must be overridden in the PostgreSql dialect parser
         PgVectorModule().setup()
         PostGisModule().setup()
         Bm25Module().setup()
+        PgCryptoModule().setup()
+        BinaryStringsModule().setup()
         // For example - Postgis, PgVector and Bm25 all add new data types - a new combined rule must be added to the dialect parser
         // All the rules that are shared must call all overridden parser rules
         PostgreSqlParserUtil.type_name = GeneratedParserUtilBase.Parser { psiBuilder, i ->
